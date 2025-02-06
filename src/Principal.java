@@ -36,6 +36,9 @@ public class Principal {
             findItemIndex++;
         }
 
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println(funcionario.toString());
+        }
 
     }
 }

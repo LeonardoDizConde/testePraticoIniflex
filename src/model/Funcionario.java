@@ -1,6 +1,8 @@
 package model;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -20,6 +22,21 @@ public class Funcionario extends Pessoa{
 
     public String getFuncao() {
         return funcao;
+    }
+
+    public String getSalarioFormated() {
+        DecimalFormatSymbols monetarySymbol = new DecimalFormatSymbols();
+        monetarySymbol.setDecimalSeparator(',');
+        monetarySymbol.setGroupingSeparator('.');
+        DecimalFormat monetaryParser = new DecimalFormat("#,###.00", monetarySymbol);
+        return monetaryParser.format(salario);
+    }
+
+    public String toString() {
+        String text = "- Funcionário(a):\n\t- Nome: %s\n\t- Data de nascimento: %s\n\t- Salário: %s\n\t- Função: %s\n";
+        String formatedBirth = timeParser.format(this.getDataNascimento());
+
+        return String.format(text, this.getNome(), formatedBirth, getSalarioFormated(), funcao);
     }
 
     public static Funcionario convertFromTableItem(String[] tableItem) {
