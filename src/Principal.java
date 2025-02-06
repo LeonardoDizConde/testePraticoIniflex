@@ -3,6 +3,7 @@ import model.Funcionario;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Principal {
     public static String[][] dadosTabela = {
@@ -56,6 +57,13 @@ public class Principal {
                 mapEntry = new ArrayList<>();
                 mapEntry.add(funcionario);
                 funcaoFuncionariosMap.put(funcao, mapEntry);
+            }
+        }
+
+        for (Entry<String, ArrayList<Funcionario>> mapEntry : funcaoFuncionariosMap.entrySet()) {
+            System.out.printf("- Funcionários com função de %s:\n", mapEntry.getKey());
+            for (Funcionario funcionario : mapEntry.getValue()) {
+                System.out.println(funcionario.toString());
             }
         }
     }
