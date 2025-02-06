@@ -1,10 +1,13 @@
 import model.Funcionario;
 
+import java.math.BigDecimal;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+
+import static model.Utils.formatMonetaryValue;
 
 public class Principal {
     public static String[][] dadosTabela = {
@@ -90,6 +93,13 @@ public class Principal {
 
         printAlphabeticallyFuncionarios(funcionarios);
 
+        BigDecimal sumSalary = new BigDecimal(0);
+
+        for (Funcionario funcionario : funcionarios) {
+            sumSalary = sumSalary.add(funcionario.getSalario());
+        }
+
+        System.out.println(formatMonetaryValue(sumSalary));
     }
 
     public static void printAlphabeticallyFuncionarios(List<Funcionario> funcionarios) {

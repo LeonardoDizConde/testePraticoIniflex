@@ -1,13 +1,11 @@
 package model;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import static model.Utils.*;
 
 public class Funcionario extends Pessoa {
-    private static final DateTimeFormatter timeParser = DateTimeFormatter.ofPattern("dd/MM/uuuu");
     private BigDecimal salario;
     private String funcao;
     public Funcionario(String nome, LocalDate dataNascimento, BigDecimal salario, String funcao) {
@@ -30,23 +28,19 @@ public class Funcionario extends Pessoa {
     }
 
     public String getSalarioFormated() {
-        DecimalFormatSymbols monetarySymbol = new DecimalFormatSymbols();
-        monetarySymbol.setDecimalSeparator(',');
-        monetarySymbol.setGroupingSeparator('.');
-        DecimalFormat monetaryParser = new DecimalFormat("#,###.00", monetarySymbol);
-        return monetaryParser.format(salario);
+        return formatMonetaryValue(this.salario);
     }
 
     public String toString() {
         String text = "- Funcionário(a):\n\t- Nome: %s\n\t- Data de nascimento: %s\n\t- Salário: %s\n\t- Função: %s\n";
-        String formatedBirth = timeParser.format(this.getDataNascimento());
+        String formatedBirth = formatLocalDate(this.getDataNascimento());
 
         return String.format(text, this.getNome(), formatedBirth, getSalarioFormated(), funcao);
     }
 
     public static Funcionario convertFromTableItem(String[] tableItem) {
         String nome = tableItem[0];
-        LocalDate dataNascimento = LocalDate.parse(tableItem[1], timeParser);
+        LocalDate dataNascimento = getLocalDateFromFormatedDateString(tableItem[1]);
         BigDecimal salario = BigDecimal.valueOf(Double.parseDouble(tableItem[2]));
         String funcao = tableItem[3];
         return new Funcionario(nome, dataNascimento, salario, funcao);
