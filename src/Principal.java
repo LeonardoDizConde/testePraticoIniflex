@@ -1,5 +1,6 @@
 import model.Funcionario;
 
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -63,6 +64,13 @@ public class Principal {
         for (Entry<String, ArrayList<Funcionario>> mapEntry : funcaoFuncionariosMap.entrySet()) {
             System.out.printf("- Funcionários com função de %s:\n", mapEntry.getKey());
             for (Funcionario funcionario : mapEntry.getValue()) {
+                System.out.println(funcionario.toString());
+            }
+        }
+
+        for (Funcionario funcionario : funcionarios) {
+            Month birthdayMonth = funcionario.getDataNascimento().getMonth();
+            if(birthdayMonth == Month.OCTOBER || birthdayMonth == Month.DECEMBER) {
                 System.out.println(funcionario.toString());
             }
         }
