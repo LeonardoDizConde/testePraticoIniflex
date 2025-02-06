@@ -24,6 +24,11 @@ public class Funcionario extends Pessoa{
         return funcao;
     }
 
+    public void darAumento(double porcentagemAumento) {
+        BigDecimal aumento = BigDecimal.valueOf(1 + porcentagemAumento / 100);
+        this.salario = salario.multiply(aumento);
+    }
+
     public String getSalarioFormated() {
         DecimalFormatSymbols monetarySymbol = new DecimalFormatSymbols();
         monetarySymbol.setDecimalSeparator(',');

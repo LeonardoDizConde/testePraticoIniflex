@@ -40,5 +40,13 @@ public class Principal {
             System.out.println(funcionario.toString());
         }
 
+        for (Funcionario funcionario : funcionarios) {
+            funcionario.darAumento(10);
+        }
+
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println(funcionario.toString());
+        }
+
     }
 }
