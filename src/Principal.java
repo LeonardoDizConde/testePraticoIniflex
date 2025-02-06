@@ -2,6 +2,7 @@ import model.Funcionario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class Principal {
     public static String[][] dadosTabela = {
@@ -20,6 +21,7 @@ public class Principal {
 
     public static void main(String[] args) {
         List<Funcionario> funcionarios = new ArrayList<>();
+        HashMap<String, ArrayList<Funcionario>> funcaoFuncionariosMap = new HashMap<>();
 
         for (String[] itemTabela : dadosTabela) {
             funcionarios.add(Funcionario.convertFromTableItem(itemTabela));
@@ -45,8 +47,16 @@ public class Principal {
         }
 
         for (Funcionario funcionario : funcionarios) {
-            System.out.println(funcionario.toString());
+            String funcao = funcionario.getFuncao();
+            ArrayList<Funcionario> mapEntry;
+            if (funcaoFuncionariosMap.containsKey(funcao)) {
+                mapEntry = funcaoFuncionariosMap.get(funcao);
+                mapEntry.add(funcionario);
+            } else {
+                mapEntry = new ArrayList<>();
+                mapEntry.add(funcionario);
+                funcaoFuncionariosMap.put(funcao, mapEntry);
+            }
         }
-
     }
 }
