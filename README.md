@@ -31,3 +31,7 @@
 3.11 – Imprimir o total dos salários dos funcionários.
 
 3.12 – Imprimir quantos salários mínimos ganha cada funcionário, considerando que o salário mínimo é R$1212.00.
+
+## Informações extras:
+- Versão do java: antes do commit "code improvements" era java 21, agora é java 8 ou posterior
+- IDE usada: InteliJ
