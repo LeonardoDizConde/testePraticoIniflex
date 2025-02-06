@@ -100,6 +100,10 @@ public class Principal {
         }
 
         System.out.println(formatMonetaryValue(sumSalary));
+
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println(funcionario.calculateMinimumSalaryAmountEarn());
+        }
     }
 
     public static void printAlphabeticallyFuncionarios(List<Funcionario> funcionarios) {

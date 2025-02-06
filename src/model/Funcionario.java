@@ -1,11 +1,13 @@
 package model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 import static model.Utils.*;
 
 public class Funcionario extends Pessoa {
+    private static final BigDecimal minimumSalary = new BigDecimal(1212);
     private BigDecimal salario;
     private String funcao;
     public Funcionario(String nome, LocalDate dataNascimento, BigDecimal salario, String funcao) {
@@ -29,6 +31,10 @@ public class Funcionario extends Pessoa {
 
     public String getSalarioFormated() {
         return formatMonetaryValue(this.salario);
+    }
+
+    public double calculateMinimumSalaryAmountEarn() {
+        return salario.divide(minimumSalary, RoundingMode.DOWN).doubleValue();
     }
 
     public String toString() {
