@@ -44,6 +44,13 @@ public class Funcionario extends Pessoa{
         return String.format(text, this.getNome(), formatedBirth, getSalarioFormated(), funcao);
     }
 
+    public String toStringPessoa() {
+        String text = "- Nome: %s\n- Data de nascimento: %s";
+        String formatedBirth = timeParser.format(this.getDataNascimento());
+
+        return String.format(text, this.getNome(), formatedBirth);
+    }
+
     public static Funcionario convertFromTableItem(String[] tableItem) {
         String nome = tableItem[0];
         LocalDate dataNascimento = LocalDate.parse(tableItem[1], timeParser);

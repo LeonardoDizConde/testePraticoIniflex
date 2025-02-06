@@ -74,5 +74,18 @@ public class Principal {
                 System.out.println(funcionario.toString());
             }
         }
+
+        Funcionario oldestFuncionario = funcionarios.getFirst();
+
+        for (int indexReq39 = 1; indexReq39 < funcionarios.size(); indexReq39++) {
+            Funcionario funcionario = funcionarios.get(indexReq39);
+            int oldestFuncionarioBirthYear = oldestFuncionario.getDataNascimento().getYear();
+            int funcionarioBirthYear = funcionario.getDataNascimento().getYear();
+            if(oldestFuncionarioBirthYear > funcionarioBirthYear) {
+                oldestFuncionario = funcionario;
+            }
+        }
+
+        System.out.println(oldestFuncionario.toStringPessoa());
     }
 }
