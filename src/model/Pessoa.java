@@ -15,13 +15,20 @@ public class Pessoa {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
     public String getNomeIdade() {
-        String text = "- Nome: %s\n- Idade: %d anos";
         int idade = LocalDate.now().getYear() - dataNascimento.getYear();
-        return text.formatted(nome, idade);
+        return String.format("- Nome: %s\n- Idade: %d anos\n", nome, idade);
     }
 }
