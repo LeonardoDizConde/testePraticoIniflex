@@ -6,7 +6,7 @@ import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Funcionario extends Pessoa{
+public class Funcionario extends Pessoa {
     private static final DateTimeFormatter timeParser = DateTimeFormatter.ofPattern("dd/MM/uuuu");
     private BigDecimal salario;
     private String funcao;
@@ -42,13 +42,6 @@ public class Funcionario extends Pessoa{
         String formatedBirth = timeParser.format(this.getDataNascimento());
 
         return String.format(text, this.getNome(), formatedBirth, getSalarioFormated(), funcao);
-    }
-
-    public String toStringPessoa() {
-        String text = "- Nome: %s\n- Data de nascimento: %s";
-        String formatedBirth = timeParser.format(this.getDataNascimento());
-
-        return String.format(text, this.getNome(), formatedBirth);
     }
 
     public static Funcionario convertFromTableItem(String[] tableItem) {

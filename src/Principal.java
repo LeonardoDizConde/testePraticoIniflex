@@ -2,6 +2,7 @@ import model.Funcionario;
 
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -86,6 +87,6 @@ public class Principal {
             }
         }
 
-        System.out.println(oldestFuncionario.toStringPessoa());
+        System.out.println(oldestFuncionario.getNomeIdade());
     }
 }

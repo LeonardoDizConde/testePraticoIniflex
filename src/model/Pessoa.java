@@ -18,4 +18,10 @@ public class Pessoa {
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
+
+    public String getNomeIdade() {
+        String text = "- Nome: %s\n- Idade: %d anos";
+        int idade = LocalDate.now().getYear() - dataNascimento.getYear();
+        return text.formatted(nome, idade);
+    }
 }
