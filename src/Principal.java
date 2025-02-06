@@ -2,9 +2,8 @@ import model.Funcionario;
 
 import java.time.Month;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 public class Principal {
@@ -88,5 +87,50 @@ public class Principal {
         }
 
         System.out.println(oldestFuncionario.getNomeIdade());
+
+        printAlphabeticallyFuncionarios(funcionarios);
+
+    }
+
+    public static void printAlphabeticallyFuncionarios(List<Funcionario> funcionarios) {
+        List<Funcionario> funcionariosToOrder = new ArrayList<Funcionario>(funcionarios);
+
+        quicksortFuncionarios(funcionariosToOrder,0, funcionarios.size() - 1);
+
+        for (Funcionario funcionario : funcionariosToOrder) {
+            System.out.println(funcionario);
+        }
+    }
+
+
+    private static void quicksortFuncionarios(List<Funcionario> funcionarios, int left, int right) {
+        int start = left;
+        int end = right;
+
+        String pivot = funcionarios.get((start + end) / 2).getNome();
+
+        while (start <= end) {
+            while (funcionarios.get(start).getNome().compareTo(pivot) < 0) {
+                start++;
+            }
+
+            while (funcionarios.get(end).getNome().compareTo(pivot) > 0) {
+                end--;
+            }
+
+            if (start <= end) {
+                Funcionario temp = funcionarios.get(start);
+                funcionarios.set(start, funcionarios.get(end));
+                funcionarios.set(end, temp);
+                start++;
+                end--;
+            }
+        }
+        if (left < end) {
+            quicksortFuncionarios(funcionarios, left, end);
+        }
+        if (start < right) {
+            quicksortFuncionarios(funcionarios, start, right);
+        }
     }
 }
