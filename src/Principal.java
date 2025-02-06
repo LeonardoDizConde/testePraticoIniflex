@@ -25,6 +25,17 @@ public class Principal {
             funcionarios.add(Funcionario.convertFromTableItem(itemTabela));
         }
 
+        boolean foundItem = false;
+        int findItemIndex = 0;
+        while (!foundItem && findItemIndex < funcionarios.size()) {
+            Funcionario funcionario = funcionarios.get(findItemIndex);
+            if(funcionario.getNome().equals("João")) {
+                funcionarios.remove(findItemIndex);
+                foundItem = true;
+            }
+            findItemIndex++;
+        }
+
 
     }
 }
